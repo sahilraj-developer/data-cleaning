@@ -7,20 +7,20 @@ const processCSVAndUpload = async (csvFilePath) => {
     const csvRows = await readCSV(csvFilePath);
 
     const files = csvRows.map(row => {
-      console.log("row.pollution_doc", row.registrationCert_doc); // Debug log
+      console.log("row.adhar_doc", row.adhar_doc); // Debug log
 
-      if (row.registrationCert_doc && row.registrationCert_doc.trim() !== "") {
+      if (row.adhar_doc && row.adhar_doc.trim() !== "") {
         try {
-          // Parse the pollution_doc field if it's a JSON string
+          // Parse the adhar_doc field if it's a JSON string
           let pollutionDoc = null;
           try {
-            pollutionDoc = JSON.parse(row.registrationCert_doc);  // Parse to handle JSON format
+            pollutionDoc = JSON.parse(row.adhar_doc);  // Parse to handle JSON format
           } catch (error) {
-            console.log(`Skipping file: ${row.name} because pollution_doc is not a valid JSON.`);
+            console.log(`Skipping file: ${row.name} because adhar_doc is not a valid JSON.`);
             return null;
           }
 
-          // Handle the case where the pollution_doc has a URL
+          // Handle the case where the adhar_doc has a URL
           if (pollutionDoc.imageUrl) {
             console.log(`Processing URL for ${row.name}`);
 
@@ -40,7 +40,7 @@ const processCSVAndUpload = async (csvFilePath) => {
             // Convert the buffer data (byte array) to a Buffer
             const fileBuffer = Buffer.from(pollutionDoc.buffer.data);
 
-            // Assuming file name and size are provided in the pollution_doc
+            // Assuming file name and size are provided in the adhar_doc
             const fileName = pollutionDoc.name || row.name; // Fallback to row.name if name is not provided
             const fileSize = pollutionDoc.size || fileBuffer.length; // Fallback to length of buffer if size is not provided
 
@@ -81,11 +81,11 @@ const processCSVAndUpload = async (csvFilePath) => {
             return null;
           }
         } catch (error) {
-          console.log(`Error processing pollution_doc for ${row.name}:`, error);
+          console.log(`Error processing adhar_doc for ${row.name}:`, error);
           return null;
         }
       } else {
-        console.log(`Skipping file: ${row.name} because pollution_doc is missing.`);
+        console.log(`Skipping file: ${row.name} because adhar_doc is missing.`);
         return null;
       }
     }).filter(file => file !== null); // Only keep valid files

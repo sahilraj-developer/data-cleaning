@@ -6,7 +6,7 @@ const path = require('path');
 const { processCSVAndUpload } = require('./controllers/fileController');
 
 // Use the environment variable for the CSV file path
-const csvFilePath = process.env.CSV_FILE_PATH || path.join(__dirname, 'data', 'testscript2.csv');  // Default if not set in .env
+const csvFilePath = process.env.CSV_FILE_PATH || path.join(__dirname, 'data', 'cond.csv');  // Default if not set in .env
 
 console.log('Checking file at path:', csvFilePath);
 

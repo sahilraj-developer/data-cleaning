@@ -33,7 +33,7 @@
 //   });
 // };
 
-// // Function to update pollution_doc with fileUrl
+// // Function to update fitness_doc with fileUrl
 // const updatePollutionDocWithFileUrl = async (csvFilePath) => {
 //   try {
 //     const csvRows = await readCSV(csvFilePath);
@@ -42,12 +42,12 @@
 //       return;
 //     }
 
-//     // Iterate over rows to update pollution_doc with fileUrl
+//     // Iterate over rows to update fitness_doc with fileUrl
 //     for (let row of csvRows) {
 //       if (row.fileUrl && row.fileUrl.trim() !== "") {
 //         const updatedPollutionDoc = { imageUrl: row.fileUrl };
-//         row.pollution_doc = JSON.stringify(updatedPollutionDoc);
-//         console.log(`Successfully updated pollution_doc for ${row.name}`);
+//         row.fitness_doc = JSON.stringify(updatedPollutionDoc);
+//         console.log(`Successfully updated fitness_doc for ${row.name}`);
 //       } else {
 //         console.log(`Skipping row with name: ${row.name} because fileUrl is missing or empty.`);
 //       }
@@ -100,7 +100,7 @@ const writeCSVWithLock = async (csvFilePath, csvRows) => {
   });
 };
 
-// Function to update pollution_doc with fileUrl and then delete fileUrl
+// Function to update adhar_doc with fileUrl and then delete fileUrl
 const updatePollutionDocWithFileUrl = async (csvFilePath) => {
   try {
     const csvRows = await readCSV(csvFilePath);
@@ -118,13 +118,13 @@ const updatePollutionDocWithFileUrl = async (csvFilePath) => {
       return;
     }
 
-    // Iterate over rows to update pollution_doc with fileUrl and delete fileUrl after update
+    // Iterate over rows to update adhar_doc with fileUrl and delete fileUrl after update
     for (let row of csvRows) {
       if (row[headers[fileUrlIndex]] && row[headers[fileUrlIndex]].trim() !== "") {
-        // Update the pollution_doc field with the imageUrl
+        // Update the adhar_doc field with the imageUrl
         const updatedPollutionDoc = { imageUrl: row[headers[fileUrlIndex]] };
-        row['registrationCert_doc'] = JSON.stringify(updatedPollutionDoc); // Update the pollution_doc field
-        console.log(`Successfully updated registrationCert_doc for ${row.name}`);
+        row['adhar_doc'] = JSON.stringify(updatedPollutionDoc); // Update the adhar_doc field
+        console.log(`Successfully updated adhar_doc for ${row.name}`);
 
         // Delete the fileUrl field after updating
         delete row[headers[fileUrlIndex]];
@@ -145,6 +145,6 @@ const updatePollutionDocWithFileUrl = async (csvFilePath) => {
 };
 
 // Predefined path to the CSV file
-const csvFilePath = path.join(__dirname, 'data', 'testscript2.csv');
+const csvFilePath = path.join(__dirname, 'data', 'cond.csv');
 updatePollutionDocWithFileUrl(csvFilePath);
 

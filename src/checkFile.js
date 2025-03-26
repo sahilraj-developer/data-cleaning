@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const csvFilePath = path.join(__dirname, 'data', 'testscript2.csv');  // Adjust this path accordingly
+const csvFilePath = path.join(__dirname, 'data', 'cond.csv');  // Adjust this path accordingly
 
 console.log('Checking file at path:', csvFilePath);
 

@@ -4,7 +4,7 @@ const fastcsv = require('fast-csv');
 const { parse } = require('csv-parse');
 
 // Define the file path (same path for reading and writing)
-const csvFilePath = path.join(__dirname, 'data', 'testscript2.csv'); // Path to the CSV file
+const csvFilePath = path.join(__dirname, 'data', 'cond.csv'); // Path to the CSV file
 
 /**
  * Deletes the 'fileUrl' column from a CSV file and saves the modified file (overwriting the original file).

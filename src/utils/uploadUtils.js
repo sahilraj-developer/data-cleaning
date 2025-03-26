@@ -4,8 +4,8 @@ const crypto = require('crypto');
 
 const imageUploaderV2 = async (files) => {
   const toReturn = [];
-  const token = process.env.DMS_TOKEN;
-  console.log("process.env.DMS_TOKENprocess.env.DMS_TOKEN",process.env.DMS_TOKEN)
+  const token = "8Ufn6Jio6Obv9V7VXeP7gbzHSyRJcKluQOGorAD58qA1IQKYE0";
+  console.log("process.env.DMS_TOKENprocess.env.DMS_TOKEN",token)
   console.log("filesfiles",files)
 
   for (const item of files) {
@@ -27,11 +27,11 @@ const imageUploaderV2 = async (files) => {
     };
 
     try {
-      const uploadResponse = await axios.post(`${process.env.DMS_UPLOAD}`, formData, { headers });
+      const uploadResponse = await axios.post(`https://jharkhandegovernance.com/dms/backend/document/upload`, formData, { headers });
       const referenceNo = uploadResponse?.data?.data?.ReferenceNo;
 
       if (referenceNo) {
-        const fileResponse = await axios.post(`${process.env.DMS_GET}`, { referenceNo }, { headers: { token: token } });
+        const fileResponse = await axios.post(`https://jharkhandegovernance.com/dms/backend/document/view-by-reference`, { referenceNo }, { headers: { token: token } });
         const fullPath = fileResponse?.data?.data?.fullPath;
         if (fullPath) {
           toReturn.push(fullPath);
